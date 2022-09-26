@@ -1,0 +1,47 @@
+sudo apt-get --purge remove postgresql postgresql-*
+sudo apt-get update
+sudo apt-get -y install postgresql
+sudo service postgresql start
+sudo service postgresql status
+sudo -u postgres psql -U postgres -d postgres
+
+# Create change password
+# psql session
+\password postgres
+
+
+# Create user
+# TODO
+
+# Create database
+sudo -u postgres createdb -U postgres rapi
+# check database is created
+\l
+
+# Connect to database
+\c rapi
+
+# Create tables
+DROP TABLE IF EXISTS items_backup;
+CREATE TABLE items_backup (
+  id        SERIAL PRIMARY KEY,
+  name      VARCHAR(128) NOT NULL,
+  reservation_id     VARCHAR(255) NOT NULL
+);
+
+# view tables
+\dt
+
+# view table
+\dt items_backup
+
+INSERT INTO items_backup
+  (name, reservation_id)
+VALUES
+  ('copegus', 986),
+  ('esbriet', 652),
+  ('fuzeon', 453),
+  ('mircera', 122);
+
+# view records
+SELECT * FROM items_backup;
