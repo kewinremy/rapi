@@ -6,26 +6,28 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var repo ItemRepository
-
 type Service struct {
-	Repo ItemRepository
+	repo ItemRepository
 }
 
-func NewService(repo ItemRepository) *Service {
+func NewService(repo *Repo) *Service {
 	return &Service{
-		Repo: repo,
+		repo: repo,
 	}
 }
 
 func GetItems(c *gin.Context) {
-	items, err := repo.ListItems()
-	if err != nil {
-		c.AbortWithStatus(http.StatusNotFound)
-		return
-	}
 
-	c.JSON(http.StatusOK, items)
+	println(service)
+	println(service.repo)
+
+	// items, err := service.repo.ListItems()
+	// if err != nil {
+	// 	c.AbortWithStatus(http.StatusNotFound)
+	// 	return
+	// }
+
+	// c.JSON(http.StatusOK, items)
 }
 
 func PostItem(c *gin.Context) {
