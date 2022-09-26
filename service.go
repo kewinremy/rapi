@@ -17,17 +17,13 @@ func NewService(repo *Repo) *Service {
 }
 
 func GetItems(c *gin.Context) {
+	items, err := service.repo.ListItems()
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		return
+	}
 
-	println(service)
-	println(service.repo)
-
-	// items, err := service.repo.ListItems()
-	// if err != nil {
-	// 	c.AbortWithStatus(http.StatusNotFound)
-	// 	return
-	// }
-
-	// c.JSON(http.StatusOK, items)
+	c.JSON(http.StatusOK, items)
 }
 
 func PostItem(c *gin.Context) {

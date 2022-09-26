@@ -29,13 +29,14 @@ func NewDatabase() *sql.DB {
 	DB, err := sql.Open("postgres", psqlconn)
 	checkError(err)
 
-	// close database
-	defer DB.Close()
-
 	// check db
 	err = DB.Ping()
 	checkError(err)
 
 	fmt.Println("Connected!")
 	return *&DB
+}
+
+func closeDatabase(db *sql.DB) {
+	db.Close()
 }

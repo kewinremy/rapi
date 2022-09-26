@@ -13,8 +13,8 @@ func NewRepo(db *sql.DB) *Repo {
 	return &Repo{DB: db}
 }
 
-func (ur *Repo) ListItems() ([]Item, error) {
-	rows, err := ur.DB.Query("SELECT * FROM items_backup")
+func (r *Repo) ListItems() ([]Item, error) {
+	rows, err := r.DB.Query("SELECT * FROM items_backup")
 	if err != nil {
 		return nil, err
 	}
@@ -36,7 +36,7 @@ func (ur *Repo) ListItems() ([]Item, error) {
 	return items, nil
 }
 
-func (ur *Repo) CreateItem(item Item) error {
+func (r *Repo) CreateItem(item Item) error {
 	// result, err := ur.DB.Exec("INSERT INTO items (name, email, phone, address) VALUES ($1, $2, $3, $4)", item.Name, item.Email, item.Phone, item.Address)
 	// if err != nil {
 	// 	return model.User{}, err
