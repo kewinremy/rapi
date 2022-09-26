@@ -21,7 +21,7 @@ func checkError(err error) {
 	}
 }
 
-func initPostgres() {
+func NewDatabase() *sql.DB {
 	// connection string
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
@@ -37,4 +37,5 @@ func initPostgres() {
 	checkError(err)
 
 	fmt.Println("Connected!")
+	return *&DB
 }

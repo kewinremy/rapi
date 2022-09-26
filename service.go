@@ -8,10 +8,16 @@ import (
 
 var repo ItemRepository
 
-func InitController(r ItemRepository) {
-	repo = r
-
+type Service struct {
+	Repo ItemRepository
 }
+
+func NewService(repo ItemRepository) *Service {
+	return &Service{
+		Repo: repo,
+	}
+}
+
 func GetItems(c *gin.Context) {
 	items, err := repo.ListItems()
 	if err != nil {

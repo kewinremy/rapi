@@ -9,6 +9,10 @@ type Repo struct {
 	DB *sql.DB
 }
 
+func NewRepo(db *sql.DB) *Repo {
+	return &Repo{DB: db}
+}
+
 func (ur *Repo) ListItems() ([]Item, error) {
 	rows, err := ur.DB.Query("SELECT * FROM items_backup")
 	if err != nil {
