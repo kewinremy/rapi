@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	_ "github.com/lib/pq"
 )
@@ -17,7 +18,8 @@ const (
 
 func checkError(err error) {
 	if err != nil {
-		panic(err)
+		log.Printf("Error: %v", err)
+		log.Fatalf("Exiting...")
 	}
 }
 
