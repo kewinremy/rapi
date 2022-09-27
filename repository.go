@@ -37,16 +37,14 @@ func (r *Repo) ListItems() ([]Item, error) {
 }
 
 func (r *Repo) CreateItem(item Item) error {
-	// result, err := ur.DB.Exec("INSERT INTO items (name, email, phone, address) VALUES ($1, $2, $3, $4)", item.Name, item.Email, item.Phone, item.Address)
-	// if err != nil {
-	// 	return model.User{}, err
-	// }
+	result, err := r.DB.Exec("INSERT INTO items_backup (name, reservation_id) VALUES ($1, $2)", item.Name, item.ReservationId)
+	if err != nil {
+		return err
+	}
 
-	// rowsAffected, _ := result.RowsAffected()
-	// idCreated, _ := result.LastInsertId()
-	// log.Printf("%d rows inserted\n", rowsAffected)
-
-	// item.Id = uint(idCreated)
-
+	rowsAffected, _ := result.RowsAffected()
+	idCreated, _ := result.LastInsertId()
+	log.Printf("%d rows inserted\n", rowsAffected)
+	log.Printf("Last id created: %d\n", idCreated)
 	return nil
 }
