@@ -98,6 +98,6 @@ According to go idiomatic guidelines:
 - [ ] introduction of monitoring tools (prometheus, grafana, etc.)
 
 ## Parts that are not there but `not missing`
-- Pure OOP
-- Adding new packages for components which are not reusable
-- Introduction of data mappers between dtos & models only at a later stage of the project when repositores & services are diverging.
+- [ ] Pure OOP
+- [ ] Adding new packages for components which are not reusable
+- [ ] Introduction of data mappers between dtos & models only at a later stage of the project when repositores & services are diverging.
