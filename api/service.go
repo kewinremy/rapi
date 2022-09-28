@@ -12,7 +12,7 @@ type Service struct {
 	repo ItemRepository
 }
 
-func NewService(repo *Repo) *Service {
+func NewService(repo ItemRepository) *Service {
 	return &Service{
 		repo: repo,
 	}
@@ -42,6 +42,7 @@ func AsyncPostReservationId(gc *gin.Context, item Item) {
 
 	reservationIdChannel := <-c
 	log.Println("reservationIdChannel: ", reservationIdChannel)
+	item.ReservationId = int(reservationIdChannel)
 
 	err := repo.CreateItem(item)
 	if err != nil {
