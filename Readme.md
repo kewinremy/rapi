@@ -1,11 +1,12 @@
 # RAPI
 
 ## Context
-A simple application illustrating how to create an api with golang, gin & postgres.
+Rapi is a simple application illustrating how to create an api with golang, gin & postgres.
 
 ## Running the application
 1. start the postgres database: `sudo service postgresql start`
-2. run the application: `go run rapi`
+2. build the application: `go build`
+3. run the application: `go run rapi`
 
 ## Endpoints & Usage
 

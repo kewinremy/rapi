@@ -12,14 +12,14 @@ type Service struct {
 	repo ItemRepository
 }
 
-func NewService(repo ItemRepository) *Service {
+func NewService(iRepo ItemRepository) *Service {
 	return &Service{
-		repo: repo,
+		repo: iRepo,
 	}
 }
 
-func GetItems(c *gin.Context) {
-	items, err := repo.ListItems()
+func (s *Service) GetItems(c *gin.Context) {
+	items, err := service.repo.ListItems()
 	if err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 		return
@@ -44,14 +44,14 @@ func AsyncPostReservationId(gc *gin.Context, item Item) {
 	log.Println("reservationIdChannel: ", reservationIdChannel)
 	item.ReservationId = int(reservationIdChannel)
 
-	err := repo.CreateItem(item)
+	err := service.repo.CreateItem(item)
 	if err != nil {
 		log.Printf("Error creating item on database:\n%v\n", err)
 		gc.AbortWithStatus(http.StatusBadRequest)
 	}
 }
 
-func PostItem(c *gin.Context) {
+func (s *Service) PostItem(c *gin.Context) {
 	var item Item
 	err := c.BindJSON(&item)
 	if err != nil {

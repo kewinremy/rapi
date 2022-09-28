@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func mapRoutes() {
+func mapRoutes(service *Service) {
 	// Ping route, health control.
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -20,6 +20,6 @@ func mapRoutes() {
 }
 
 func ItemRouting(r *gin.RouterGroup) {
-	r.GET("/items", GetItems)
-	r.POST("/items", PostItem)
+	r.GET("/items", service.GetItems)
+	r.POST("/items", service.PostItem)
 }

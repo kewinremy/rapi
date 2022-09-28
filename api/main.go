@@ -19,7 +19,7 @@ func main() {
 	repo = NewRepo(db)
 	service = NewService(repo)
 
-	mapRoutes()
+	mapRoutes(service)
 	startServer()
 	closeDatabase(db)
 }
