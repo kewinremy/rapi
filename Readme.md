@@ -89,6 +89,7 @@ According to go idiomatic guidelines:
 - [ ] generic service library for CRUDO operations
 - [ ] refactoring using the `gorm` orm: https://gorm.io/docs/
 - [ ] enhancing the middleware with security and logging features (jwt, etc.)
+- [ ] introducing editorconfig for code formatting
 
 ## Missing parts in the infrastructure
 - [ ] setting up the dev container with all required components (db + app)
