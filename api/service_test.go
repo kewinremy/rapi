@@ -1,26 +1,39 @@
 package main
 
-import (
-	"net/http"
-	"strings"
-	"testing"
+import "testing"
 
-	"github.com/gin-gonic/gin"
-)
+var testItems = []Item{
+	{
+		Id:            1,
+		Name:          "panosit",
+		ReservationId: 387,
+	},
+	{
+		Id:            1,
+		Name:          "tisonap",
+		ReservationId: 783,
+	},
+}
 
-func TestPostItem(t *testing.T) {
+type repoFake struct {
+}
+
+func (r *repoFake) ListItems() ([]Item, error) {
+	return testItems, nil
+}
+
+func (r *repoFake) CreateItem(Item) error {
+	return nil
+}
+
+func TestListItems(t *testing.T) {
 	// given
-	json := "{\"name\":\"test\"}"
-	reader := strings.NewReader(json)
-	request, err := http.NewRequest("POST", "/items", reader)
-	if err != nil {
-		t.Fail()
-	}
-
-	gc := gin.Context{
-		Request: request,
-	}
+	repo := new(repoFake)
+	service = NewService(repo)
 
 	// when
-	PostItem(&gc)
+	service.repo.ListItems()
+
+	// then
+
 }

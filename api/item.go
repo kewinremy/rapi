@@ -1,11 +1,11 @@
 package main
 
 type Item struct {
-	Id            uint   `json:"id"`
+	Id            int    `json:"id"`
 	Name          string `json:"name"`
-	ReservationId string `json:"reservation_id"`
+	ReservationId int    `json:"reservation_id"`
 }
 
 func (i *Item) TableName() string {
-	return "items_backup"
+	return "items"
 }

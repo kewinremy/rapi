@@ -22,20 +22,20 @@ sudo -u postgres createdb -U postgres rapi
 \c rapi
 
 # Create tables
-DROP TABLE IF EXISTS items_backup;
-CREATE TABLE items_backup (
+DROP TABLE IF EXISTS items;
+CREATE TABLE items (
   id        SERIAL PRIMARY KEY,
   name      VARCHAR(128) NOT NULL,
-  reservation_id     VARCHAR(255) NOT NULL
+  reservation_id     INT NOT NULL
 );
 
 # view tables
 \dt
 
 # view table
-\dt items_backup
+\dt items
 
-INSERT INTO items_backup
+INSERT INTO items
   (name, reservation_id)
 VALUES
   ('copegus', 986),
@@ -44,4 +44,4 @@ VALUES
   ('mircera', 122);
 
 # view records
-SELECT * FROM items_backup;
+SELECT * FROM items;
